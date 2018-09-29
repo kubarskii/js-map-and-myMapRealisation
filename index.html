@@ -8,8 +8,8 @@
 
 <body>
 	<p>Try to enter array in csv format:</p>
-	<input id = 'input' placeholder="array in csv" onchange="calcMyMapVision()">
-	<p>Press "Enter" look at the console</p>
+	<input id = 'input' placeholder="array in csv" onkeyup="calcMyMapVision()">
+
 </body>
 
 <script type="text/javascript">
@@ -20,7 +20,6 @@
 	console.log(newNumbers);
 	
 	var arr2 = [1,2,3,4,5];
-	
 	Array.prototype.myMapVision = function myMapVision(func){
 		if (this !== null){
 			var t = Object( this ), length = t.length, n_arr = [];
@@ -44,6 +43,8 @@
 	});
 	console.log(arr3);
 	
+	var div = document.createElement('div');
+	
 	function calcMyMapVision(){
 		var input = document.getElementById('input');
 		var input_arr = input.value.split(',');
@@ -54,11 +55,13 @@
 		var input_arr3 = input_arr.myMapVision(function(x){
 			return x*3;
 		});
-		console.log(input_arr);
-		console.log(input_arr2);
-		console.log(input_arr3);
+		var string = '<p>'+input_arr.join()+'</p>';
+		string+='<p>'+input_arr2.join()+'</p>';
+		string+='<p>'+input_arr3.join()+'</p>';
+		div.innerHTML = string;
+		document.body.insertBefore(div, input.nextSibling);
 	}
-	
+
 	
 </script>
 </html>
